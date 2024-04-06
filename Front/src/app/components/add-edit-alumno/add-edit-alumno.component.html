@@ -1,0 +1,53 @@
+<div class="row">
+    <div class="col-lg-4 offset-lg-4">
+        <div class="card  bg-secondary mb-3" style="max-width: 25rem;">
+            <div class="card-header">{{operacion}} Alumno </div>
+            <div class="card-body">
+                <form [formGroup]="form" (ngSubmit)="addAlumno()">
+                    
+                  <input formControlName="num_cuenta" type="number" class="form-control" placeholder="Número de Cuenta">
+                    <span *ngIf="form.get('num_cuenta')?.hasError('required') && form.get('num_cuenta')?.touched ">
+                      Número de Cuenta obligatorio
+                    </span>
+                    <span *ngIf="form.get('num_cuenta')?.value < 0 || form.get('num_cuenta')?.value >= 999999999">
+                      Número de Cuenta Invalido
+                    </span>
+
+              
+                    <input formControlName="nombre" type="text" class="form-control mt-2" placeholder="Nombre(s)">
+                    <span *ngIf="form.get('nombre')?.hasError('required') && form.get('nombre')?.touched">
+                      Nombre obligatorio
+                    </span>
+                    
+
+                    <input formControlName="apellido" type="text" class="form-control mt-2" placeholder="Apellido(s)">
+                    <span *ngIf="form.get('apellido')?.hasError('required') && form.get('apellido')?.touched">
+                      Apellido obligatorio
+                    </span>
+                  
+                    <input formControlName="fecha_nacimiento" type="date" class="form-control mt-2" placeholder="Fecha de Nacimiento">
+                    <span *ngIf="form.get('fecha_nacimiento')?.hasError('required') && form.get('fecha_nacimiento')?.touched">
+                      Fecha de Nacimiento obligatoria
+                    </span>
+                  
+                    <input formControlName="correo_institucional" type="email" class="form-control mt-2" placeholder="Correo Institucional">
+                    <span *ngIf="form.get('correo_institucional')?.hasError('email') && form.get('correo_institucional')?.touched">
+                      Correo Institucional no válido
+                    </span>
+                  
+                    <input formControlName="activo" type="text" class="form-control mt-2" placeholder="Estado">
+
+                    <div class="row  mt-2 text-center">
+                        <div class="col-lg-6">
+                            <button [disabled]="form.invalid" type="submit" class="btn btn-primary">Aceptar</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <button routerLink="/" type="button" class="btn btn-secondary">Volver</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+          </div>
+    </div>
+</div>
+
