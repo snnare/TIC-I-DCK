@@ -1,0 +1,35 @@
+Paso 1: Crear imágenes de backend y frontend
+
+- Frontend:
+  1. Navega a la carpeta "Frontend" donde se encuentra el Dockerfile.
+  2. Ejecuta el siguiente comando para construir la imagen del frontend:
+     docker build -t snare/frontend-crud:v1 .
+
+- Backend:
+  1. Navega a la carpeta del "Backend" donde se encuentra el Dockerfile.
+  2. Ejecuta el siguiente comando para construir la imagen del backend:
+     docker build -t snare/backend-crud:v1 .
+
+Nota: Los nombres de las etiquetas (tags) pueden ser diferentes, 
+pero se debe asegurar de usar los mismos nombres que se usan en 
+el archivo docker-compose.yml para evitar confusiones.
+
+Paso 2: Ejecutar docker-compose
+
+1. Ubícate en la carpeta raíz donde se encuentra el archivo docker-compose.yml.
+2. Ejecuta el siguiente comando para construir los servicios definidos en el archivo docker-compose.yml:
+	docker-compose build
+
+3. Una vez que finalizado, inicia los servicios ejecutando:
+	docker-compose up
+
+
+Notas:
+- La base de datos se crea utilizando la imagen de MySQL 8.0, especificada en el archivo docker-compose.yml.
+- Dentro de la base de datos se monta un archivo init.sql, el cual contiene la creacion, de la bd, tabla y
+poblacion de la bd.
+
+Paso 3: Ingresar a la app -> http://localhost:3308/
+
+
+VIDEO DEMOSTRATIVO: https://youtu.be/dFZnhPfbmcs
