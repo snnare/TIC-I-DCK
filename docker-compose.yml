@@ -2,7 +2,7 @@ version: '3'
 services:
   frontend:
     container_name: front-production
-    image: snare/frontend-crud:v1
+    image: angel77aws/proyecto:frontend-crud
     ports:
       - "3308:2000"
     expose:
@@ -29,7 +29,7 @@ services:
             retries: 10
   backend:
     container_name: back-production
-    image: snare/backend-crud:v1
+    image: angel77aws/proyecto:backend-crud
     ports:
       - "4000:4000"
     expose:
