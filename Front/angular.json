@@ -19,6 +19,7 @@
             "polyfills": [
               "zone.js"
             ],
+            
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
@@ -58,15 +59,18 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "frontend:build:production"
+          "options": {
+            "proxyConfig": "src/proxy.conf.json", 
+            "configurations": {
+              "production": {
+                "browserTarget": "frontend:build:production"
+              },
+              "development": {
+                "browserTarget": "frontend:build:development"
+              }
             },
-            "development": {
-              "browserTarget": "frontend:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
+            "defaultConfiguration": "development"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
