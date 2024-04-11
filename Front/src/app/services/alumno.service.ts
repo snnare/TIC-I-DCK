@@ -14,7 +14,7 @@ export class AlumnoService {
   private myApiUrl: string;
 
   constructor(private http: HttpClient) { 
-    this.myAppUrl = "http://localhost:4000/"
+    this.myAppUrl = "http://172.26.7.45:4000/"
     this.myApiUrl = "api/alumnos/"
   }
 
