@@ -38,7 +38,17 @@ class Server{
     midlewares(){
         this.app.use(express.json())
 
-        this.app.use(cors())
+        //this.app.use(cors())
+
+                // Configuración de CORS Anywhere como middleware
+                this.app.use((req, res, next) => {
+                    corsProxy.createServer({
+                        originWhitelist: [], // Permitir todos los orígenes
+                        requireHeader: ['origin', 'x-requested-with'],
+                        removeHeaders: ['cookie', 'cookie2']
+                    }).handleRequest(req, res);
+                });
+
     }
 
     async dbConnect(){
