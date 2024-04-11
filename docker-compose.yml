@@ -1,49 +1,44 @@
 version: '3'
 services:
   frontend:
-    container_name: frontend-crud-SEF
-    image: elssg8/angular-crud:v1
+    container_name: front-production
+    image: snare/frontend-crud:v1
     ports:
       - "80:80"
     expose:
-      - "80"
+      - "3308"
     networks:
-      - internalnet
-
+      - produccion
   mysql:
-    container_name: db-crud-SEF
-    image: mysql:latest
+    container_name: db-production
+    image: mysql:8.0
     ports:
-      - "3306:3306"
+      - "3307:3306"
     expose:
       - "3306"
     environment:
-      MYSQL_ROOT_PASSWORD: 12345678
-      MYSQL_DATABASE: Tiendita
+      MYSQL_ROOT_PASSWORD: '1212'
+      MYSQL_DATABASE: dbcontrolescolar
     volumes:
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./BD/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
-      - internalnet
+      - produccion
     healthcheck:
             test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
-            timeout: 20s
+            timeout: 15s
             retries: 10
-
   backend:
-    container_name: backend-crud-SEF
-    image: elssg8/backend-crud:v1
+    container_name: back-production
+    image: snare/backend-crud:v1
     ports:
       - "4000:4000"
     expose:
       - "4000"
     networks:
-      - internalnet
+      - produccion
     depends_on:
       mysql:
         condition: service_healthy
-    #command: ["./wait-for-mysql.sh", "mysql", "3306", "npm build"]  # Ejecutar el script de espera
-
-
 networks:
-  internalnet:
+  produccion:
     driver: bridge
